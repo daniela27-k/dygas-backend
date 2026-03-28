@@ -26,7 +26,16 @@ export class Censo {
   @Column()
   personasHogar: number;
 
+  // ✅ Campos de geolocalización
+  @Column({ type: 'decimal', precision: 10, scale: 6, nullable: true })
+  latitud: number;
+
+  @Column({ type: 'decimal', precision: 10, scale: 6, nullable: true })
+  longitud: number;
+
+  @Column({ name: 'precision_metros', type: 'int', nullable: true })
+  precision: number;
+
   @CreateDateColumn()
   createdAt: Date;
 }
-
