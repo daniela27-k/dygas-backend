@@ -36,6 +36,10 @@ export class Censo {
   @Column({ name: 'precision_metros', type: 'int', nullable: true })
   precision: number;
 
+  // ✅ Estado del registro
+  @Column({ type: 'enum', enum: ['pendiente', 'aprobado', 'instalado'], default: 'pendiente' })
+  estado: 'pendiente' | 'aprobado' | 'instalado';
+
   @CreateDateColumn()
   createdAt: Date;
 }

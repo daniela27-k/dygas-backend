@@ -19,6 +19,12 @@ export class CensoService {
     return this.censoRepository.find();
   }
 
+  // ✅ Cambiar estado del registro
+  async cambiarEstado(id: number, estado: 'pendiente' | 'aprobado' | 'instalado') {
+    await this.censoRepository.update(id, { estado });
+    return this.censoRepository.findOne({ where: { id: Number(id) } });
+  }
+
   async getStats() {
     const total = await this.censoRepository.count();
     const porMunicipio = await this.censoRepository
@@ -35,6 +41,14 @@ export class CensoService {
       .groupBy('censo.departamento')
       .getRawMany();
 
-    return { total, porMunicipio, porDepartamento };
+    // ✅ Conteo por estado
+    const porEstado = await this.censoRepository
+      .createQueryBuilder('censo')
+      .select('censo.estado', 'estado')
+      .addSelect('COUNT(*)', 'total')
+      .groupBy('censo.estado')
+      .getRawMany();
+
+    return { total, porMunicipio, porDepartamento, porEstado };
   }
 }
