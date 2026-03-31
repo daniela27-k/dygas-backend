@@ -20,11 +20,25 @@ export class Censo {
   @Column()
   apellido: string;
 
+  // ✅ Cédula y teléfono
+  @Column({ nullable: true })
+  cedula: string;
+
+  @Column({ nullable: true })
+  telefono: string;
+
   @Column()
   numeroHijos: number;
 
   @Column()
   personasHogar: number;
+
+  // ✅ Campos de contacto
+  @Column({ nullable: true })
+  cedula: string;
+
+  @Column({ nullable: true })
+  telefono: string;
 
   // ✅ Campos de geolocalización
   @Column({ type: 'decimal', precision: 10, scale: 6, nullable: true })
