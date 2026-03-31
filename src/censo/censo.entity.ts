@@ -20,7 +20,6 @@ export class Censo {
   @Column()
   apellido: string;
 
-  // ✅ Cédula y teléfono
   @Column({ nullable: true })
   cedula: string;
 
@@ -33,14 +32,6 @@ export class Censo {
   @Column()
   personasHogar: number;
 
-  // ✅ Campos de contacto
-  @Column({ nullable: true })
-  cedula: string;
-
-  @Column({ nullable: true })
-  telefono: string;
-
-  // ✅ Campos de geolocalización
   @Column({ type: 'decimal', precision: 10, scale: 6, nullable: true })
   latitud: number;
 
@@ -50,7 +41,6 @@ export class Censo {
   @Column({ name: 'precision_metros', type: 'int', nullable: true })
   precision: number;
 
-  // ✅ Estado del registro
   @Column({ type: 'enum', enum: ['pendiente', 'aprobado', 'instalado'], default: 'pendiente' })
   estado: 'pendiente' | 'aprobado' | 'instalado';
 
